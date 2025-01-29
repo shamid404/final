@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #282c34;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+#connectButton {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+#connectButton:hover {
+    background-color: #45a049;
+}
+
+#candidatesSection {
+    margin-top: 30px;
+    text-align: center;
+}
+
+#candidates {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.candidate {
+    background-color: #fff;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    text-align: center;
+}
+
+button.voteButton {
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button.voteButton:hover {
+    background-color: #0056b3;
+}
