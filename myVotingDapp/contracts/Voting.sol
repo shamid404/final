@@ -77,3 +77,15 @@ contract Voting {
         emit VoteRevoked(msg.sender, candidateId);
     }
 }
+
+
+function changeAdmin(address newAdmin) public {
+        require(msg.sender == admin, "Only current admin can change admin.");
+        require(newAdmin != address(0), "New admin cannot be zero address.");
+        require(newAdmin != admin, "New admin must be different.");
+
+        address oldAdmin = admin;
+        admin = newAdmin;
+
+        emit AdminChanged(oldAdmin, newAdmin);
+    }
