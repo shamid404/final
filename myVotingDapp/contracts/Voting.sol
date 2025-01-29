@@ -16,6 +16,7 @@ contract Voting {
     event ElectionStarted(string message, uint256 candidateCount);
     event VotingEnded(string message, uint256 totalVotes);
     event Voted(address indexed voter, uint256 indexed candidateId);
+    event CandidateAdded(string name, uint256 candidateId);
 
     constructor(string[] memory candidateNames) {
         admin = msg.sender;
@@ -52,5 +53,13 @@ contract Voting {
 
     function getCandidates() public view returns (Candidate[] memory) {
         return candidates;
+    }
+
+    function addCandidate(string memory name) public {
+        require(msg.sender == admin, "Only admin can add candidates.");
+        require(votingActive, "Cannot add candidates after voting has started.");
+
+        candidates.push(Candidate(name, 0));
+        emit CandidateAdded(name, candidates.length - 1);
     }
 }
