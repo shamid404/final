@@ -17,6 +17,7 @@ contract Voting {
     event VotingEnded(string message, uint256 totalVotes);
     event Voted(address indexed voter, uint256 indexed candidateId);
     event CandidateAdded(string name, uint256 candidateId);
+    event VoteRevoked(address indexed voter, uint256 indexed candidateId);
 
     constructor(string[] memory candidateNames) {
         admin = msg.sender;
@@ -61,5 +62,18 @@ contract Voting {
 
         candidates.push(Candidate(name, 0));
         emit CandidateAdded(name, candidates.length - 1);
+    }
+
+    function revokeVote(uint256 candidateId) public {
+        require(votingActive, "Voting has ended.");
+        require(voters[msg.sender], "You haven't voted yet.");
+        require(candidateId < candidates.length, "Invalid candidate ID.");
+        require(candidates[candidateId].voteCount > 0, "No votes to revoke.");
+
+        voters[msg.sender] = false;
+        candidates[candidateId].voteCount -= 1;
+        totalVotes -= 1;
+
+        emit VoteRevoked(msg.sender, candidateId);
     }
 }
